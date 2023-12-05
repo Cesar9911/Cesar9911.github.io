@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+</head>
+<body>
+    <h1>API DE NOTICIAS</h1>
+    <div id="search-container">
+        <input type="text" id="search-input" placeholder="Buscar noticias...">
+        <button class="search-button" id="search-button">Buscar</button>
+        <button class="weatherButton"><a href="index2.html">Clima</a></button>
+    </div>
+    <div id="output"></div>
+
+    <script>
+        // Función para obtener noticias
+        function getNews() {
+            var url = 'https://newsapi.org/v2/top-headlines?' +
+                      'country=us&' +
+                      'apiKey=a588edc6ae6d4cfba747d7a4f127f5ac';
+            fetch(url)
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(data) {
+                    var outputElement = document.getElementById('output');
+                    outputElement.innerHTML = '';
+
+                    data.articles.forEach(function(article) {
+                        var articleDiv = document.createElement('div');
+                        articleDiv.className = 'news-article';
+
+                        var articleImage = document.createElement('img');
+                        articleImage.className = 'news-image';
+                        articleImage.src = article.urlToImage;
+
+                        var articleTitle = document.createElement('h2');
+                        articleTitle.className = 'news-title';
+                        articleTitle.textContent = article.title;
+
+                        var articleDescription = document.createElement('p');
+                        articleDescription.className = 'news-description';
+                        articleDescription.textContent = article.description;
+
+                        articleDiv.appendChild(articleImage);
+                        articleDiv.appendChild(articleTitle);
+                        articleDiv.appendChild(articleDescription);
+                        outputElement.appendChild(articleDiv);
+                    });
+                })
+                .catch(function(error) {
+                    console.error('Error al obtener noticias:', error);
+                });
+        }
+
+        // Función para buscar noticias
+        function searchNews() {
+            var searchTerm = document.getElementById('search-input').value;
+            var url = 'https://newsapi.org/v2/everything?' +
+                      'q=' + searchTerm + '&' +
+                      'apiKey=a588edc6ae6d4cfba747d7a4f127f5ac';
+
+            fetch(url)
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(data) {
+                    var outputElement = document.getElementById('output');
+                    outputElement.innerHTML = '';
+
+                    data.articles.forEach(function(article) {
+                        var articleDiv = document.createElement('div');
+                        articleDiv.className = 'news-article';
+
+                        var articleImage = document.createElement('img');
+                        articleImage.className = 'news-image';
+                        articleImage.src = article.urlToImage;
+
+                        var articleTitle = document.createElement('h2');
+                        articleTitle.className = 'news-title';
+                        articleTitle.textContent = article.title;
+
+                        var articleDescription = document.createElement('p');
+                        articleDescription.className = 'news-description';
+                        articleDescription.textContent = article.description;
+
+                        articleDiv.appendChild(articleImage);
+                        articleDiv.appendChild(articleTitle);
+                        articleDiv.appendChild(articleDescription);
+                        outputElement.appendChild(articleDiv);
+                    });
+                })
+                .catch(function(error) {
+                    console.error('Error al buscar noticias:', error);
+                });
+        }
+
+        // Agregar evento de clic al botón de búsqueda
+        document.getElementById('search-button').addEventListener('click', function () {
+            searchNews();
+        });
+
+        // Escuchar el evento "Enter" en el campo de entrada para buscar noticias
+        document.getElementById('search-input').addEventListener('keyup', function (event) {
+            if (event.key === 'Enter') {
+                searchNews();
+            }
+        });
+
+        // Cargar noticias al cargar la página
+        window.onload = getNews;
+    </script>
+</body>
+</html>

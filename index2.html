@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pronóstico del Tiempo</title>
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+</head>
+<body>
+    <h1>API DE CLIMA</h1>
+
+    <div class="divbuscar">
+      <input type="text" id="cityInput" placeholder="Buscar ciudad">
+      <button onclick="buscarClima()">Buscar</button>
+    <div>
+
+    <div id="weatherInfo">
+      <h2>Clima en [Nombre de la Ciudad]</h2>
+      <p>Temperatura: [Temperatura]°C</p>
+      <p>Clima: [Descripción del Clima]</p>
+      <p>Índice de Sensación Térmica: [Sensación Térmica]°C</p>
+      <p>Probabilidad de Precipitación: [Probabilidad de Precipitación]%</p>
+    </div>
+
+  <button class="newsButton"><a href="index.html">Regresar</a></button>
+
+    <script>
+        // Reemplaza 'TU_API_KEY' con tu API key de OpenWeatherMap
+        const apiKey = '36650e1934bd54d9101d96e59db73001';
+
+        // Obtener la ubicación del usuario al cargar la página
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                obtenerClimaPorCoordenadas(latitude, longitude);
+            });
+        }
+
+        function buscarClima() {
+            const city = document.getElementById('cityInput').value;
+            obtenerClima(city);
+        }
+
+        function obtenerClima(city) {
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    actualizarInformacionClima(data);
+                })
+                .catch(error => {
+                    console.error('Error al obtener el clima:', error);
+                });
+        }
+
+        function obtenerClimaPorCoordenadas(latitude, longitude) {
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    actualizarInformacionClima(data);
+                })
+                .catch(error => {
+                    console.error('Error al obtener el clima:', error);
+                });
+        }
+
+        function actualizarInformacionClima(data) {
+            const weatherInfo = document.getElementById('weatherInfo');
+            weatherInfo.innerHTML = `
+                <h2>Clima en ${data.name}</h2>
+                <p>Temperatura: ${data.main.temp}°C</p>
+                <p>Clima: ${data.weather[0].description}</p>
+            `;
+        }
+    </script>
+</body>
+</html>

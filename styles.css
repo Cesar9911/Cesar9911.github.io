@@ -1,0 +1,88 @@
+.news-article {
+    border: 1px solid #000000;
+    border-radius: 7px;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #ffffff8f;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.75);
+    text-align: right; /* Alinea el contenido de las noticias a la derecha */
+}
+
+.news-title {
+    font-size: 20px;
+    color: #000000;
+    text-align: left; /* Alinea el título a la izquierda */
+}
+
+.news-description {
+    font-size: 16px;
+    color: rgb(rgba(0, 0, 0, 0.5));
+    text-align: left; /* Alinea la descripción a la izquierda */
+}
+
+.news-image {
+    max-width: 100px; /* Ajusta el ancho máximo de la imagen a tu preferencia */
+    max-height: 100px; /* Ajusta la altura máxima de la imagen a tu preferencia */
+    float: left; /* Hace que la imagen flote a la izquierda */
+    margin-right: 15px; /* Agrega un margen a la derecha de la imagen para separarla del texto */
+}
+
+#search-container {
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#search-input {
+    display: inline-block;
+    border-radius: 5px;
+    padding: 1.7px 5px; /* Ajusta el relleno (padding) según tus preferencias */
+    width: 200px; /* Ajusta el ancho del campo de búsqueda según tus preferencias */
+    margin-right: 10px; /* Agrega un margen derecho para separar el campo de búsqueda del botón */
+    margin-left: 10px;
+}
+
+button.weatherButton {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        border-radius: 5px;
+        background-color: rgb(255, 255, 255); /* Cambia el color de fondo del botón a tu preferencia */
+        color: #fff; /* Cambia el color del texto del botón a tu preferencia */
+        padding: 3px 20px; /* Ajusta el relleno (padding) según tus preferencias */
+        border: none; /* Elimina el borde del botón */
+        cursor: pointer;
+        margin-top: 0%;
+        margin-left: 73%;
+}
+
+#search-button {
+    display: inline-block;
+    border-radius: 5px;
+    background-color: rgba(25, 13, 189); /* Cambia el color de fondo del botón a tu preferencia */
+    color: #fff; /* Cambia el color del texto del botón a tu preferencia */
+    padding: 3px 20px; /* Ajusta el relleno (padding) según tus preferencias */
+    border: none; /* Elimina el borde del botón */
+    cursor: pointer;
+}
+
+h1{
+    color: #000000;
+    margin-top:20px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: fantasy;
+    background-color: rgba(25, 13, 189, 0.68);
+    box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.75);
+}
+
+body{
+    background-image: url('R.jpg'); /* Ruta de la imagen relativa al archivo CSS */
+    background-size: cover; /* Ajustar la imagen al tamaño del contenedor */
+    height: 500px; /* Altura de tu contenedor */
+}
+
+#search-button:hover {
+    background-color: #fff;
+    color: rgba(25, 13, 189);
+    border-color: rgba(25, 13, 189);
+    border: 5px;
+}
