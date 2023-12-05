@@ -53,9 +53,6 @@
                         outputElement.appendChild(articleDiv);
                     });
                 })
-                .catch(function(error) {
-                    console.error('Error al obtener noticias:', error);
-                });
         }
 
         // Función para buscar noticias
@@ -95,9 +92,7 @@
                         outputElement.appendChild(articleDiv);
                     });
                 })
-                .catch(function(error) {
-                    console.error('Error al buscar noticias:', error);
-                });
+              
         }
 
         // Agregar evento de clic al botón de búsqueda
@@ -111,9 +106,6 @@
                 searchNews();
             }
         });
-
-        // Cargar noticias al cargar la página
-        window.onload = getNews;
     </script>
 </body>
 </html>
